@@ -1,0 +1,1 @@
+// Used to test cuda output is legal

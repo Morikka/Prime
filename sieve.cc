@@ -7,8 +7,7 @@
 
 using namespace std;
 
-
-const long long N = 100000;
+const long long N = 10000000;
 
 long long is_prime[N+2];
 
@@ -29,6 +28,8 @@ int primesieve(long long n){
       }
     }
   }
+  cout<<"Prime size is: "<<prime.size()<<endl;
+  freopen("sieve.out", "w", stdout);
   for(int i=0; i<prime.size(); i++){
     cout<<prime[i]<<" ";
   }
@@ -36,7 +37,6 @@ int primesieve(long long n){
 }
 
 int main(){
-  freopen("sieve.out", "w", stdout);
-  primesieve(N);
+  int res = primesieve(N);
   return 0;
 }
