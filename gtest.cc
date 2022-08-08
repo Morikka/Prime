@@ -8,15 +8,13 @@ TEST(Sievetest, integer) {
     ASSERT_EQ(EratosthenesSieve(1000000), 78498); //1e6
     ASSERT_EQ(EratosthenesSieve(100000000), 5761455); //1e8
     ASSERT_EQ(EratosthenesSieve(1000000000), 50847534); //1e9
-
     // ASSERT_EQ(EratosthenesSieve(10000000000), 455052511); //1e10
-
 }
 
 TEST(miillerTest, prime) {
     ASSERT_TRUE(miillerTest(10000019));
     ASSERT_TRUE(miillerTest(1000000007));
-    // ASSERT_TRUE(miillerTest(10000000019)); //can't pass
+    // ASSERT_TRUE(miillerTest(10000000019)); //can't pass (too big).
     // ASSERT_TRUE(miillerTest(10000000000037)); //can't pass
 }
 
@@ -28,7 +26,7 @@ TEST(primeTest, prime) {
 }
 
 TEST(goldbach, segment){
-    ASSERT_TRUE(solve(10));
+    ASSERT_TRUE(solve(1000));
 }
 
 int main(int argc, char** argv) {

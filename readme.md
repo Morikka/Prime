@@ -4,7 +4,20 @@ A mini CUDA project used to test binary Goldbach conjecture on [a, b].
 
 ## Introduction
 
-Goldbach conjecture is a famous mathematical problem which has not been confirmed by now.
+Goldbach conjecture is a famous mathematical problem: 
+
+> Every even number greater than 2 as the sum of two prime numbers.
+
+### Example
+
+```text
+8 = 3 + 5
+10 = 3 + 7
+12 = 5 + 7
+and so on
+```
+
+One method to verifying the Goldbach conjecture is to test every number in a specific interval `[a,b]` is the sum of two prime numbers.
 
 ## Compile
 
@@ -56,6 +69,10 @@ The results are correct
 nvcc -o prime prime.cu
 ./prime
 ```
+
+## TODO
+
+Convert int64 to string for bigger numbers.
 
 ## Reference
 

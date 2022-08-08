@@ -9,7 +9,7 @@
 
 using namespace std;
 
-const uint32_t L1D_CACHE_SIZE = 16384; //
+const uint32_t L1D_CACHE_SIZE = 16384;
 const uint32_t L = 100; //The segment length, equals to b - a, usually less than 1e8
 const uint16_t K = 50; //The size of set Q, guess it will less than 65535?
 const uint8_t A[13] = {2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41};
@@ -70,6 +70,7 @@ uint64_t EratosthenesSieve(uint64_t limit){
   return count;
 }
  
+// return x^y mod p
 uint64_t power(uint64_t x, uint64_t y, uint64_t p){
     uint64_t res = 1;
     x = x % p;
@@ -82,7 +83,8 @@ uint64_t power(uint64_t x, uint64_t y, uint64_t p){
     return res;
 }
 
-// http://oeis.org/A014233
+// miller-rabin test for primality of n
+// Smallest odd number for which Miller-Rabin primality test: http://oeis.org/A014233
 bool miillerTest(uint64_t n){
     if (n <= 1 || n == 4)  return false;
     if (n <= 3) return true;
@@ -148,7 +150,7 @@ void find(uint64_t a, uint64_t b){
       k++;
     }
   }
-  cout<<"k and i is: "<<k<<" "<<i<<endl;
+  cout<<"k and i are: "<<k<<" "<<i<<endl;
 }
 
 bool IsPrime(uint64_t n){

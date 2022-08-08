@@ -2,11 +2,12 @@
 #include "book.h"
 #include<iostream>
 
-#define PRIMECOUNT  664579
+#define PRIMECOUNT 664579
 #define S 1850000
 #define BEGIN 2000000
 #define END 3100000
 
+// return x^y mod p
 __device__ uint64_t power(uint64_t x, uint64_t y, uint64_t p){
     uint64_t res = 1;
     x = x % p;
@@ -19,14 +20,16 @@ __device__ uint64_t power(uint64_t x, uint64_t y, uint64_t p){
     return res;
 }
 
+// miller-rabin test for primality of n
+// Smallest odd number for which Miller-Rabin primality test: http://oeis.org/A014233
 __device__ bool isPrime(uint64_t n){
     if(n<=2 || n==4) return false;
     if(n==3) return true;
     uint64_t d = n - 1;
     uint64_t x;
-    int8_t r = 0; // r is smaller than 64
-    int8_t i; // i is smaller than 12
-    int8_t j; // j is smaller than j
+    int8_t r = 0; // r is always smaller than 64
+    int8_t i; // i is always smaller than 12
+    int8_t j; // j is always smaller than r
 
     const uint8_t A[13] = {2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41};
 
@@ -58,6 +61,7 @@ __device__ bool isPrime(uint64_t n){
     return true;
 }
 
+// Return the position of the smallest prime bigger than val.
 __device__ int binary_search(int *prime, int val){
     int l = 0;
     int r = PRIMECOUNT - 1;
@@ -91,7 +95,7 @@ __global__ void goldbach(int *prime, int* sum){
         idx = (tmp - BEGIN) / 2;
 
         if(idx<0||idx>(END-BEGIN)/2){
-            printf("%d\n", idx);
+            // printf("%d\n", idx);
             continue;
         }
 
@@ -110,7 +114,7 @@ int main( void ) {
     cudaEvent_t start, stop;
     HANDLE_ERROR(cudaEventCreate(&start));
     HANDLE_ERROR(cudaEventCreate(&stop));
-    // HANDLE_ERROR(cudaEventRecord(start,0));
+
     int *sum;
     int *dev_sum;
     int *dev_prime;
